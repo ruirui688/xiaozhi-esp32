@@ -502,7 +502,13 @@ choice BOARD_TYPE
         depends on IDF_TARGET_ESP32S3
     config BOARD_TYPE_ZHENGCHEN_CAM_ML307
         bool "征辰科技AI Camera(ML307)"
-	depends on IDF_TARGET_ESP32S3
+	    depends on IDF_TARGET_ESP32S3
+    config BOARD_TYPE_ZHENGCHEN_MINICAM
+        bool "征辰科技MiniCam"
+        depends on IDF_TARGET_ESP32S3
+    config BOARD_TYPE_ZHENGCHEN_EYE
+        bool "征辰科技AI-EYE"
+        depends on IDF_TARGET_ESP32S3
     config BOARD_TYPE_MINSI_K08_DUAL
         bool "敏思科技K08(DUAL)"
         depends on IDF_TARGET_ESP32S3
@@ -677,6 +683,38 @@ choice DISPLAY_ESP32S3_AUDIO_BOARD
         bool "ST7789 240*320"
 endchoice
 
+choice DISPLAY_TYPE_ZHENGCHEN_EYE
+    depends on BOARD_TYPE_ZHENGCHEN_EYE
+    prompt "ZHENGCHEN_EYE LCD Type"
+    default USE_LCD_240X240_GIF1
+    help
+        Select the LCD and eye animation variant for Zhengchen Eye.
+    config USE_NOLCD
+        bool "No LCD"
+    config USE_LCD_240X240_GIF1
+        bool "GC9A01 240*240 circle, eyebrow eye GIF"
+    config USE_LCD_160X160_GIF1
+        bool "GC9D01 160*160 circle, eyebrow eye GIF"
+    config USE_LCD_240X240_GIF2
+        bool "GC9A01 240*240 circle, eyeball GIF"
+    config USE_LCD_160X160_GIF2
+        bool "GC9D01 160*160 circle, eyeball GIF"
+endchoice
+
+choice NET_TYPE_ZHENGCHEN_EYE
+    depends on BOARD_TYPE_ZHENGCHEN_EYE
+    prompt "ZHENGCHEN_EYE network type"
+    default USE_WIFI
+    help
+        Select the network path used by Zhengchen Eye.
+    config USE_4G
+        bool "4G only"
+    config USE_WIFI
+        bool "WiFi only"
+    config USE_4G_WIFI
+        bool "WiFi and 4G switchable"
+endchoice
+
 choice DISPLAY_ESP32S3_TOUCH_LCD_1_85C
     depends on BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_LCD_1_85C
     prompt "ESP32S3_TOUCH_LCD_1_85C version"
@@ -808,7 +846,7 @@ config USE_DEVICE_AEC
         || BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_3_4C || BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_4C || BOARD_TYPE_ESP_S3_LCD_EV_Board_2 || BOARD_TYPE_YUNLIAO_S3 \
         || BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_7 || BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_8 || BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_10_1 \
         || BOARD_TYPE_ESP_VOCAT || BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_LCD_3_49 || BOARD_TYPE_WAVESHARE_ESP32_S3_RLCD_4_2 || BOARD_TYPE_ZHENGCHEN_CAM || BOARD_TYPE_ZHENGCHEN_CAM_ML307 \
-        || BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_LCD_4_3C || BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_LCD_1_54 || BOARD_TYPE_WAVESHARE_ESP32_S3_LCD_0_85 || BOARD_TYPE_AI_VOX3 || BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_AMOLED_1_43C)
+        || BOARD_TYPE_ZHENGCHEN_MINICAM || BOARD_TYPE_ZHENGCHEN_EYE || BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_LCD_4_3C || BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_LCD_1_54 || BOARD_TYPE_WAVESHARE_ESP32_S3_LCD_0_85 || BOARD_TYPE_AI_VOX3 || BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_AMOLED_1_43C)
     help
         To work properly, device-side AEC requires a clean output reference path from the speaker signal and physical acoustic isolation between the microphone and speaker.
 

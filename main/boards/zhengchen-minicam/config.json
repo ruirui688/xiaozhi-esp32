@@ -1,0 +1,12 @@
+{
+    "target": "esp32s3",
+    "builds": [
+        {
+            "name": "zhengchen-minicam",
+            "sdkconfig_append": [
+                "CONFIG_BOARD_TYPE_ZHENGCHEN_MINICAM=y",
+                "CONFIG_USE_DEVICE_AEC=y"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "target": "esp32s3",
+    "builds": [
+        {
+            "name": "zhengchen_eye",
+            "sdkconfig_append": [
+                "CONFIG_BOARD_TYPE_ZHENGCHEN_EYE=y",
+                "CONFIG_USE_LCD_240X240_GIF1=y",
+                "CONFIG_USE_WIFI=y",
+                "CONFIG_USE_DEVICE_AEC=y"
+            ]
+        }
+    ]
+}
